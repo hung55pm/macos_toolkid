@@ -9,7 +9,6 @@
 import Foundation
 import SharkORM
 import CryptoSwift
-import SwiftyJSON
 
 class Connectsqlite3 : Any {
     

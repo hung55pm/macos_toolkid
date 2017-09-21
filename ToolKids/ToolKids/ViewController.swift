@@ -9,7 +9,6 @@
 import Cocoa
 import SharkORM
 import CryptoSwift
-import SwiftyJSON
 
 class ViewController: NSViewController {
     var t: String?

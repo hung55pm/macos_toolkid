@@ -7,7 +7,6 @@ target 'ToolKids' do
   pod 'AFNetworking', '0.9.1'
   pod 'SharkORM', '~> 2.1.2'
   pod 'CryptoSwift', '0.6.9'
-  pod 'SwiftyJSON'  
   # Pods for ToolKids
 
   target 'ToolKidsTests' do
