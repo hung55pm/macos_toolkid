@@ -12,6 +12,8 @@ import CryptoSwift
 
 class ViewController: NSViewController {
     
+    var t: String?
+    
     
     @IBOutlet weak var combobox_choose_server: NSComboBox!
     
@@ -64,7 +66,11 @@ class ViewController: NSViewController {
             print("off akey")
         default:
             print("default")
+            
+           
         }
+        
+        httpconnecserver()
         
     }
     
@@ -74,14 +80,13 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loaddata()
-        Ed_akey.stringValue = autogenerateAkeyinttohex()
+        //Ed_akey.stringValue = autogenerateAkeyinttohex()
         
-        Ed_ptuid.stringValue = autoincrementptuid(str: "c9f222aefffff")
+        //Ed_ptuid.stringValue = autoincrementptuid(str: "c9f222aefffff")
         
         //httpconnecserver()
         
-        //connect()
-        
+       
 
     }
     func autoincrementptuid(str : String) ->String{
@@ -210,14 +215,64 @@ class ViewController: NSViewController {
     }
     func httpconnecserver(){
         
+        let FACTORY_KEY : String! = "czy7d125jlvmi8gf0qt4"
         
-        let urls = "http://117.0.38.37:8259/api/Investor/changePassword"
+        
+        let offset = Int(arc4random_uniform(UInt32(FACTORY_KEY.characters.count)))
+        
+        print(offset)
+        
+        var index1 = FACTORY_KEY.index(FACTORY_KEY.startIndex, offsetBy: offset)
+        
+        
+        var substring1 = FACTORY_KEY.substring(to: index1)
+        print(substring1)
+        var substring2 = FACTORY_KEY.substring(from: index1)
+        print(substring2)
+        
+        let key_firt : String! = String(substring2 + "" + substring1)
+         var index3 = key_firt.index(key_firt.startIndex, offsetBy: 16)
+        var key :String! = key_firt.substring(to: index3)
+        print(key)
+    
+        
+        let uuid = UUID().uuidString
+        print(uuid)
+        
+        var index2 = uuid.index(uuid.startIndex, offsetBy: 16)
+        
+        let req = uuid.substring(to: index2)
+        print(req)
+        
+        
+        do {
+            let aes = try AES(key: key!, iv: "", blockMode: .ECB, padding: PKCS7())
+            let aes_req = try aes.encrypt([UInt8](req.utf8))
+            let characters = aes_req.map { Character(UnicodeScalar($0)) }
+            let aes_text = String(Array(characters))
+            
+            var hmac_req = try HMAC(key: key!, variant: .sha1).authenticate([UInt8](req.utf8))
+             let character = hmac_req.map { Character(UnicodeScalar($0)) }
+            var hmac_cal = String(Array(character))
+            t = String (aes_text + "" + hmac_cal)
+            
+        } catch { }
+       
+        var FACTORY_ID :String? = "x1"
+        var srtoff : String? = String(offset)
+        
+                let urls = "http://vinnet.vn:8005/fac_init"
        
         var request = URLRequest(url : URL(string: urls)!)
         
-        request.httpMethod = "PUT"// phuong thuc truyen
+        request.httpMethod = "POST"// phuong thuc truyen
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let bodyData = "investorId=DEMO000&oldPassword=Test1234&newPassword=dssdsds"//
+        let bodyData = "&fid=" + FACTORY_ID! + "&o=" + srtoff! + "&t=" + t!
+        
+        
+        print(bodyData)
+        
+        
         
         request.httpBody = bodyData.data(using: String.Encoding.utf8);
         let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -238,6 +293,7 @@ class ViewController: NSViewController {
         task.resume()
         }
     
+
     
 }
 
