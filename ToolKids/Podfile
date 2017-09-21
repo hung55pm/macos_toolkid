@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ToolKids' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'AFNetworking', '0.9.1'
+  pod 'SharkORM', '~> 2.1.2'
+  pod 'CryptoSwift', '0.6.9'  # Pods for ToolKids
+
+  target 'ToolKidsTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ToolKidsUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

@@ -1,0 +1,6 @@
+framework module Pods_ToolKidsUITests {
+  umbrella header "Pods-ToolKidsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
