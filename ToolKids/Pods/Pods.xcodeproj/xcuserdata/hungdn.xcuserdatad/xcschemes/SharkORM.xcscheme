@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CE15F8A33F27B44755C051A7F7633890'
+               BlueprintIdentifier = 'B28E4FD44F70FD7DD2CBA9A21D9B2973'
                BlueprintName = 'SharkORM'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SharkORM.framework'>

@@ -6,7 +6,9 @@ target 'ToolKids' do
   use_frameworks!
   pod 'AFNetworking', '0.9.1'
   pod 'SharkORM', '~> 2.1.2'
-  pod 'CryptoSwift', '0.6.9'  # Pods for ToolKids
+  pod 'CryptoSwift', '0.6.9'
+  pod 'SwiftyJSON'  
+  # Pods for ToolKids
 
   target 'ToolKidsTests' do
     inherit! :search_paths

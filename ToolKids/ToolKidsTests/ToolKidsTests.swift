@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import ToolKids
+import SharkORM
 
 class ToolKidsTests: XCTestCase {
     
@@ -22,22 +23,8 @@ class ToolKidsTests: XCTestCase {
     }
     
     func testExample() {
-        let result = "{\"key\": \"d8daf3fb00d640e5\", \"ip\": [65, 45, 52, 48], \"rnd\": \"76CEA973-D5D\", \"sn\": 164, \"fid\": \"x1\", \"sid\": \"1505990729175881\", \"iv\": \"d8e6a47fa02449e0\"}"
-        var token = result.components(separatedBy: "[")
-        var s = token[1].components(separatedBy: "]")
-        print(token[0])
-        print(s[1])
-        
-        let a = token[0] + "0" + s[1]
-        
-        let mc = ViewController()
-        
-       let k = mc.convertToDictionary(text: a)
-        
-        print("aadaasasasasasas" + String(describing: k?["key"]!))
-    
-        print(a)
-        
+        let vc = ViewController()
+        vc.httpconnecserver()
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
