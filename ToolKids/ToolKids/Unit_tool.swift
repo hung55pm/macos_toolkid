@@ -113,4 +113,60 @@ class Unit_tool : Any {
         return decrypted
     }
     
+    func covertobjecttojson(device_info : Device_Info) -> String{
+        var result : String? = ""
+        var dict : Dictionary<String, String> = [:]
+        
+        dict["ptuid"] = device_info.ptuid
+        dict["akey"] = device_info.akey
+        dict["sn"] = device_info.sn
+        dict["imei"] = device_info.imei
+        dict["iccid"] = device_info.imei
+        dict["imsi"] = device_info.imei
+        dict["rnd"] = device_info.rnd
+        dict["mcc"] = device_info.mcc
+        dict["mnc"] = device_info.mnc
+        dict["cdma_tid"] = device_info.cdma_tid
+        dict["uimid"] = device_info.uimid
+        dict["esn"] = device_info.esn
+        dict["meid"] = device_info.meid
+        dict["area_cod"] = device_info.area_code
+        dict["iccid"] = device_info.iccid
+        dict["imsi"] = device_info.imsi
+        
+        
+        do{
+            
+            var error : NSError?
+            
+            let jsonData = try! JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.prettyPrinted)
+            
+            result = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            
+            print("aaaaa" + result!)
+            
+        }catch{
+            
+        }
+    return result!
+    }
+    func Aes_encrypt_genqr(key: String, req :String , iv : String) -> String {
+        
+        var aes_text : String? = ""
+        
+        do {
+            let aes = try AES(key: key, iv: iv, blockMode: .CFB, padding: NoPadding.self as! Padding)
+            let aes_req = try aes.encrypt([UInt8](req.utf8))
+            aes_text = aes_req.toHexString()
+            
+            print("aes_text:  " +  aes_text!)
+            
+        } catch {
+            
+        }
+        
+        return aes_text!
+    }
+
+    
 }

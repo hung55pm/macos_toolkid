@@ -8,17 +8,23 @@
 
 import Foundation
 
+
 class Device_Info : AnyObject {
     var ptuid : String?
     var akey : String?
     var imei : String?
     var mcc : String?
     var mnc : String?
-    var cdma : String?
+    var cdma_tid : String?
     var uimid : String?
     var esn : String?
     var meid : String?
-    var area : String?
+    var area_code : String?
+    var sn : String?
+    var rnd : String?
+    var imsi : String?
+    var iccid : String?
     
     
+        
 }

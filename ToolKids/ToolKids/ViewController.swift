@@ -18,7 +18,8 @@ class ViewController: NSViewController {
     var sn_sv :String?
     var rnd_sv :String?
     let sql = Connectsqlite3()
-    let clogin = ConnecttoServer()
+    let csever = ConnecttoServer()
+    let unit_auto = Unit_auto()
     @IBOutlet weak var combobox_choose_server: NSComboBox!
     
     @IBOutlet weak var combobox_choose_customer: NSComboBox!
@@ -56,7 +57,7 @@ class ViewController: NSViewController {
         
         switch check_ptuid.state {
         case NSOnState:
-            print("on ptuid")
+        Ed_ptuid.stringValue = unit_auto.autoincrementptuid(str: Ed_ptuid.stringValue)
         case NSOffState:
             print("off ptuid")
         default:
@@ -66,6 +67,7 @@ class ViewController: NSViewController {
         
         switch check_akey.state {
         case NSOnState:
+            Ed_akey.stringValue = unit_auto.autogenerateAkeyinttohex()
             print("on akey")
         case NSOffState :
             print("off akey")
@@ -76,10 +78,7 @@ class ViewController: NSViewController {
         }
         
         
-       // httpconnecserver()
-        
-        
-        let reslogin = clogin.httpconnecserver(FACTORY_ID: server.user!, FACTORY_KEY: server.pass!, domain: server.domain!, port: server.port!)
+        let reslogin = csever.httpconnecserver(FACTORY_ID: server.user!, FACTORY_KEY: server.pass!, domain: server.domain!, port: server.port!)
         
         sid_sv = reslogin.sid
         iv_sv = reslogin.iv
@@ -87,6 +86,25 @@ class ViewController: NSViewController {
         rnd_sv = reslogin.rnd
         sn_sv = reslogin.sn
         
+        
+        var device = Device_Info()
+        
+        device.akey = Ed_akey.stringValue
+        device.ptuid = Ed_ptuid.stringValue
+        device.imei = Ed_imei.stringValue
+        device.mcc = Ed_MCC.stringValue
+        device.mnc = Ed_MNC.stringValue
+        device.cdma_tid = Ed_CDMA_TID.stringValue
+        device.uimid = Ed_UIMID.stringValue
+        device.esn = Ed_ESN.stringValue
+        device.meid = Ed_MEID.stringValue
+        device.area_code = Ed_AREA.stringValue
+        device.sn = String(Int(reslogin.sn!)! + 1)
+        device.rnd = reslogin.rnd
+        device.iccid = ""
+        device.imsi = ""
+        
+    csever.genQRcode(sever: server, reslogin: reslogin, device_info: device)
         
     }
     
@@ -96,9 +114,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loaddata()
-        //Ed_akey.stringValue = autogenerateAkeyinttohex()
         
-        //Ed_ptuid.stringValue = autoincrementptuid(str: "c9f222aefffff")
         
     
         
