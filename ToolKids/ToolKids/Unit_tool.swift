@@ -88,9 +88,7 @@ class Unit_tool : Any {
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {
-        //let str = text.stringByReplacingOccurrencesOfString("\0\0\0\0\0\0\0\0\0", withString:"")
         let str = text.replacingOccurrences(of: "\0\0\0\0\0\0\0\0\0", with: "")
-      
         if let data = str.data(using: String.Encoding.utf8) {
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -132,7 +130,7 @@ class Unit_tool : Any {
         dict["uimid"] = device_info.uimid
         dict["esn"] = device_info.esn
         dict["meid"] = device_info.meid
-        dict["area_cod"] = device_info.area_code
+        dict["area_code"] = device_info.area_code
         dict["iccid"] = device_info.iccid
         dict["imsi"] = device_info.imsi
         
@@ -150,7 +148,7 @@ class Unit_tool : Any {
         }catch{
             
         }
-    return result!
+        return result!
     }
     func Aes_encrypt_genqr(key: String, req :String , iv : String) -> String {
         
@@ -169,6 +167,5 @@ class Unit_tool : Any {
         
         return aes_text!
     }
-
     
 }

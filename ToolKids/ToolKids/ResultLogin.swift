@@ -12,7 +12,7 @@ class resultlogin: AnyObject {
     var sid : String?
     var iv :String?
     var Key :String?
-    var sn :Int64?
+    var sn :Int8?
     var rnd :String?
 
 }

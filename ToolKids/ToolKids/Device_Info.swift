@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Device_Info : AnyObject {
     var ptuid : String?
     var akey : String?
@@ -20,11 +19,8 @@ class Device_Info : AnyObject {
     var esn : String?
     var meid : String?
     var area_code : String?
-    var sn : Int64?
-    var rnd : String?
     var imsi : String?
     var iccid : String?
-    
-    
-        
+    var sn : Int8?
+    var rnd : String?
 }

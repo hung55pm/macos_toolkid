@@ -24,8 +24,6 @@ class ConnecttoServer: Any {
         let t = unit.getT(FACTORY_KEY: FACTORY_KEY, key: key,req: req , offset: offset)
         let urls = "http://" + domain + ":" + port+"/fac_init"
         
-    
-        print(urls)
         var request = URLRequest(url : URL(string: urls)!)
         request.httpMethod = "POST"// phuong thuc truyen
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -35,7 +33,6 @@ class ConnecttoServer: Any {
         print("bodydata:  " + bodyData)
         
         request.httpBody = bodyData.data(using: String.Encoding.utf8);
-        do{
         let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             if error != nil
@@ -63,16 +60,12 @@ class ConnecttoServer: Any {
             result.Key = res["key"] as! String
             result.rnd = res["rnd"] as! String
             result.sid = res["sid"] as! String
-            result.sn = res["sn"] as! Int64
+            result.sn = res["sn"] as! Int8
                 
             
             
         }
-        
         task.resume()
-        }catch{
-            
-        }
         
         return result
     }
@@ -81,23 +74,21 @@ class ConnecttoServer: Any {
         let unit = Unit_tool()
         
         
-        
         let urls = "http://" + sever.domain! + ":" + sever.port!+"/gen_qr_action"
-        var sn : Int
-        
     
-        
+
         
         var request = URLRequest(url : URL(string: urls)!)
         request.httpMethod = "POST"// phuong thuc truyen
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 
-        
         let req = unit.covertobjecttojson(device_info: device_info)
         
         var estr = unit.Aes_encrypt_genqr(key: reslogin.Key!, req: req, iv: reslogin.iv!)
         
         let bodyData = "&fid" + sever.user! + "&sid" + reslogin.sid! + "e" + estr
+
+        
         
         print("bodydata:  " + bodyData)
         
@@ -119,17 +110,6 @@ class ConnecttoServer: Any {
             print("responseString = \(responseString!)")
             
             
-//            let decrypted = unit.Aes_decrypt(key: key, responseString: responseString!)
-//            let characters = decrypted.map { Character(UnicodeScalar($0)) }
-//            let b = String(Array(characters))
-//            print(b)
-//            let res = unit.convertToDictionary(text: b)!
-//            
-//            result.iv = res["iv"] as! String
-//            result.Key = res["key"] as! String
-//            result.rnd = res["rnd"] as! String
-//            result.sid = res["sid"] as! String
-//            result.sn = res["sn"] as! String
             
             
             
