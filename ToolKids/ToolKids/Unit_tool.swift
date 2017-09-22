@@ -88,7 +88,9 @@ class Unit_tool : Any {
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {
+        //let str = text.stringByReplacingOccurrencesOfString("\0\0\0\0\0\0\0\0\0", withString:"")
         let str = text.replacingOccurrences(of: "\0\0\0\0\0\0\0\0\0", with: "")
+      
         if let data = str.data(using: String.Encoding.utf8) {
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -115,7 +117,7 @@ class Unit_tool : Any {
     
     func covertobjecttojson(device_info : Device_Info) -> String{
         var result : String? = ""
-        var dict : Dictionary<String, String> = [:]
+        var dict : Dictionary<String, Any> = [:]
         
         dict["ptuid"] = device_info.ptuid
         dict["akey"] = device_info.akey

@@ -24,6 +24,8 @@ class ConnecttoServer: Any {
         let t = unit.getT(FACTORY_KEY: FACTORY_KEY, key: key,req: req , offset: offset)
         let urls = "http://" + domain + ":" + port+"/fac_init"
         
+    
+        print(urls)
         var request = URLRequest(url : URL(string: urls)!)
         request.httpMethod = "POST"// phuong thuc truyen
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -33,6 +35,7 @@ class ConnecttoServer: Any {
         print("bodydata:  " + bodyData)
         
         request.httpBody = bodyData.data(using: String.Encoding.utf8);
+        do{
         let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             if error != nil
@@ -60,12 +63,16 @@ class ConnecttoServer: Any {
             result.Key = res["key"] as! String
             result.rnd = res["rnd"] as! String
             result.sid = res["sid"] as! String
-            result.sn = res["sn"] as! String
+            result.sn = res["sn"] as! Int64
                 
             
             
         }
+        
         task.resume()
+        }catch{
+            
+        }
         
         return result
     }

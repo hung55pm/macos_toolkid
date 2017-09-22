@@ -20,7 +20,7 @@ class Device_Info : AnyObject {
     var esn : String?
     var meid : String?
     var area_code : String?
-    var sn : String?
+    var sn : Int64?
     var rnd : String?
     var imsi : String?
     var iccid : String?

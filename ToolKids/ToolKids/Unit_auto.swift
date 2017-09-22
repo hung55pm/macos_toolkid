@@ -10,17 +10,27 @@ import Foundation
 
 class Unit_auto: Any {
     
+    
+    func getthreefirt(str :String) -> String {
+        let startIndex = str.index(str.startIndex, offsetBy: 3)
+        let firt = str.substring(to: startIndex)
+    return firt
+    }
+    
+    func getfiveafter(str : String) -> String {
+        let endIndex = str.index(str.startIndex, offsetBy: 3)
+        let affter = str.substring(from: endIndex)
+        
+        return affter
+    }
 
     func autoincrementptuid(str : String) ->String{
         
-        //get string firt to index n
-        let startIndex = str.index(str.startIndex, offsetBy: 3)
-        let firt = str.substring(to: startIndex)
+       
+        let firt = getthreefirt(str: str)
         print(firt)
-        // get string from n -> end string
-        let endIndex = str.index(str.startIndex, offsetBy: 7)
-        let affter = str.substring(from: startIndex)
-        
+
+        let affter = getfiveafter(str: str)
         print(affter)
         
         var  so = generateAkeyhextoint(strhex: affter)
@@ -28,7 +38,15 @@ class Unit_auto: Any {
         so = so+1
         print(so)
         
-        let moi = generateAkeyinttohex(so: so)
+        var moi = generateAkeyinttohex(so: so)
+        moi = moi.replacingOccurrences(of: " ", with: "")
+        print(moi.characters.count)
+        if(moi.characters.count<5){
+            for i in 1...(5 - moi.characters.count){
+                moi = "0" + moi
+                print("moi " + String(i) + moi)
+            }
+        }
         
         return firt + moi
     }
