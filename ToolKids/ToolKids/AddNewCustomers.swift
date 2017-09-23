@@ -9,7 +9,7 @@
 import Cocoa
 
 class AddNewCustomers: NSViewController {
-
+    
     var name : String?
     var key : String?
     var box : NSComboBox? = nil
@@ -19,7 +19,7 @@ class AddNewCustomers: NSViewController {
     
     @IBAction func bt_cancel(_ sender: Any) {
         
-        self.dismissViewController(self)        
+        self.dismissViewController(self)
     }
     
     @IBAction func bt_add(_ sender: Any) {
@@ -43,7 +43,7 @@ class AddNewCustomers: NSViewController {
             notifiaction.stringValue = "Thêm customer thành công"
             Ed_name.stringValue = ""
             Ed_key.stringValue = ""
-      }
+        }
         
     }
     override func viewWillAppear() {

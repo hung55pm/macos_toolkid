@@ -13,7 +13,7 @@ import CryptoSwift
 class Unit_tool : Any {
     
     func getoffset(FACTORY_KEY : String) -> Int {
-    return Int(arc4random_uniform(UInt32(FACTORY_KEY.characters.count)))
+        return Int(arc4random_uniform(UInt32(FACTORY_KEY.characters.count)))
     }
     
     func getkey(FACTORY_KEY : String, offset : Int) -> String{
@@ -43,7 +43,7 @@ class Unit_tool : Any {
         let req = uuid.substring(to: index2)
         
         return req
-
+        
     }
     
     func Aes_encrypt(key: String, req :String) -> String {
@@ -67,7 +67,7 @@ class Unit_tool : Any {
     func getHmac(FACTORY_KEY: String, req :String) -> String {
         var hmac_cal : String? = ""
         do {
-        
+            
             let hmac_req = try HMAC(key: FACTORY_KEY, variant: .sha1).authenticate([UInt8](req.utf8))
             hmac_cal = hmac_req.toHexString()
             print("hmac_cal:  " + hmac_cal!)
@@ -78,7 +78,7 @@ class Unit_tool : Any {
         
         return hmac_cal!
     }
-
+    
     func getT(FACTORY_KEY : String , key : String, req : String, offset : Int) -> String {
         let aes_text = Aes_encrypt(key: key, req: req)
         
@@ -105,7 +105,7 @@ class Unit_tool : Any {
             let res_aes = try AES(key: key, iv: "", blockMode: .ECB, padding: NoPadding())
             let bytes = Array<UInt8>(hex: responseString)
             decrypted = try res_aes.decrypt(bytes)
-        
+            
         }catch{
             
         }

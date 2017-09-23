@@ -10,7 +10,7 @@ import Foundation
 
 class Unit_auto: Any {
     
-
+    
     func getthreefirt(str :String) -> String {
         let startIndex = str.index(str.startIndex, offsetBy: 3)
         let firt = str.substring(to: startIndex)
@@ -72,5 +72,5 @@ class Unit_auto: Any {
         var result = UInt64(strhex, radix:16)!
         return Int64(result)
     }
-
+    
 }

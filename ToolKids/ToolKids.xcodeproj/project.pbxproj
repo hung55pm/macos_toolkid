@@ -10,6 +10,8 @@
 		404E77993E3F8EAF4796FA02 /* Pods_ToolKidsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7464711C53102C22D20633DB /* Pods_ToolKidsUITests.framework */; };
 		42B37FAE1FCB8E83193EF4F5 /* Pods_ToolKids.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF14DDAB38FE462661E78D4B /* Pods_ToolKids.framework */; };
 		540556C72A9B71953D332AA4 /* Pods_ToolKidsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C754417375211786748A57B /* Pods_ToolKidsTests.framework */; };
+		980C97271F76210000CC4B48 /* Map_Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C97261F76210000CC4B48 /* Map_Customer.swift */; };
+		980C97291F7621AD00CC4B48 /* Set_ImeiInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C97281F7621AD00CC4B48 /* Set_ImeiInfo.swift */; };
 		9882C2FD1F73C9FF006FEF1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882C2FC1F73C9FF006FEF1F /* AppDelegate.swift */; };
 		9882C2FF1F73C9FF006FEF1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882C2FE1F73C9FF006FEF1F /* ViewController.swift */; };
 		9882C3021F73C9FF006FEF1F /* ToolKids.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9882C3001F73C9FF006FEF1F /* ToolKids.xcdatamodeld */; };
@@ -50,6 +52,8 @@
 		2C754417375211786748A57B /* Pods_ToolKidsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToolKidsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		323B6987F1149DBA3A3DBBA5 /* Pods-ToolKidsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToolKidsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ToolKidsUITests/Pods-ToolKidsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7464711C53102C22D20633DB /* Pods_ToolKidsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToolKidsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		980C97261F76210000CC4B48 /* Map_Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map_Customer.swift; sourceTree = "<group>"; };
+		980C97281F7621AD00CC4B48 /* Set_ImeiInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set_ImeiInfo.swift; sourceTree = "<group>"; };
 		9882C2F91F73C9FF006FEF1F /* ToolKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToolKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9882C2FC1F73C9FF006FEF1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9882C2FE1F73C9FF006FEF1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				988BA6B31F7407580016B2FE /* connectsqlite3.swift */,
 				988BA6B51F7409000016B2FE /* Unit_auto.swift */,
 				988BA6B71F7429EA0016B2FE /* Device_Info.swift */,
+				980C97261F76210000CC4B48 /* Map_Customer.swift */,
+				980C97281F7621AD00CC4B48 /* Set_ImeiInfo.swift */,
 			);
 			path = ToolKids;
 			sourceTree = "<group>";
@@ -495,8 +501,10 @@
 			files = (
 				988BA6B81F7429EA0016B2FE /* Device_Info.swift in Sources */,
 				9882C3331F73CCC3006FEF1F /* MServers.swift in Sources */,
+				980C97291F7621AD00CC4B48 /* Set_ImeiInfo.swift in Sources */,
 				9882C32D1F73CBE1006FEF1F /* AddNewCustomers.swift in Sources */,
 				988BA6B61F7409000016B2FE /* Unit_auto.swift in Sources */,
+				980C97271F76210000CC4B48 /* Map_Customer.swift in Sources */,
 				988BA6B41F7407580016B2FE /* connectsqlite3.swift in Sources */,
 				9882C2FF1F73C9FF006FEF1F /* ViewController.swift in Sources */,
 				9882C32E1F73CBE1006FEF1F /* AddNewServer.swift in Sources */,

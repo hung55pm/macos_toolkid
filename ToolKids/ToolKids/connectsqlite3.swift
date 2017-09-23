@@ -15,7 +15,7 @@ class Connectsqlite3 : Any {
     
     
     func getallserver() -> Array<SeverVinnet> {
-    
+        
         var arrayserver: Array<SeverVinnet> = Array<SeverVinnet>()
         let rs: SRKResultSet = SeverVinnet.query().fetch()
         for var item001 in rs{
@@ -55,15 +55,15 @@ class Connectsqlite3 : Any {
             .fetch()
         let server = SeverVinnet()
         for item001 in results!{
-        
+            
             server.domain = (item001 as! SeverVinnet).domain
             server.port = (item001 as! SeverVinnet).port
             server.user = (item001 as! SeverVinnet).user
             server.pass = (item001 as! SeverVinnet).pass
             break
-    
+            
         }
-
+        
         return server
     }
     

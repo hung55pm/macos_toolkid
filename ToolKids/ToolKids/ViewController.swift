@@ -27,7 +27,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var combobox_choose_customer: NSComboBox!
     
     @IBAction func bt_choose_server(_ sender: Any) {
-            }
+    }
     
     @IBAction func bt_choose_customer(_ sender: Any) {
     }
@@ -52,7 +52,7 @@ class ViewController: NSViewController {
     
     
     @IBAction func bt_generate(_ sender: Any) {
-
+        
         let Id : Int? = (combobox_choose_server.indexOfSelectedItem + 1)
         
         print(combobox_choose_customer.indexOfSelectedItem)
@@ -119,14 +119,14 @@ class ViewController: NSViewController {
                 let reslogin = csever.httpconnecserver(sever : server, device_info : device)
                 
                 //csever.httpconnecserver(FACTORY_ID: server.user!, FACTORY_KEY: server.pass!, domain: server.domain!, port: server.port!)
-         
                 
                 
                 
                 
                 
                 
-            
+                
+                
             }else{
                 view.makeToast("Ban chua chon server")
             }
@@ -134,7 +134,7 @@ class ViewController: NSViewController {
             
         }
         
-
+        
         
         
     }
@@ -149,12 +149,12 @@ class ViewController: NSViewController {
         
         //Ed_ptuid.stringValue = autoincrementptuid(str: "c9f222aefffff")
         
-    
         
-       
-
+        
+        
+        
     }
-   
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if(segue.identifier == "addserversegue"){
             let second = segue.destinationController as! AddNewServer
@@ -169,7 +169,7 @@ class ViewController: NSViewController {
         
     }
     
-        
+    
     func loaddata() {
         
         var arrayserver: Array<SeverVinnet> = sql.getallserver()

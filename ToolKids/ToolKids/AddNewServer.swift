@@ -20,7 +20,7 @@ class AddNewServer: NSViewController {
     @IBOutlet weak var Ed_port: NSTextField!
     
     @IBOutlet weak var Ed_username: NSTextField!
-
+    
     @IBOutlet weak var Ed_password: NSSecureTextField!
     
     @IBAction func bt_add(_ sender: Any) {
@@ -58,7 +58,7 @@ class AddNewServer: NSViewController {
     
     
     @IBAction func bt_cancle(_ sender: Any) {
-    
+        
         
         self.dismissViewController(self)
         
@@ -67,10 +67,10 @@ class AddNewServer: NSViewController {
         box = self.representedObject as! NSComboBox
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // Do view setup here.
     }
     
