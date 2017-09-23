@@ -34,15 +34,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TSToast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6BB1C1403B2419F911818DA8413FDA07</key>
+		<key>0A7267BEC7EF5E4438B2AF942056DC27</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A143466F65A5F78051D46E8EA8A621C</key>
+		<key>137354749D8CFC025F65B1AC24990D27</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6BB1C1403B2419F911818DA8413FDA07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE15F8A33F27B44755C051A7F7633890</key>
+		<key>C1A21547F554E292B69725EC2EAF6302</key>
 		<dict>
 			<key>primary</key>
 			<true/>

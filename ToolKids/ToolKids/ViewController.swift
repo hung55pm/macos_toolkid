@@ -10,15 +10,18 @@ import Cocoa
 import SharkORM
 import CryptoSwift
 
+import TSToast
+
 class ViewController: NSViewController {
     var t: String?
     var sid_sv : String?
     var iv_sv :String?
     var Key_sv :String?
-    var sn_sv :Int8?
+    var sn_sv :Int64?
     var rnd_sv :String?
     let sql = Connectsqlite3()
-    let clogin = ConnecttoServer()
+    let csever = ConnecttoServer()
+    let unit_auto = Unit_auto()
     @IBOutlet weak var combobox_choose_server: NSComboBox!
     
     @IBOutlet weak var combobox_choose_customer: NSComboBox!
@@ -51,41 +54,87 @@ class ViewController: NSViewController {
     @IBAction func bt_generate(_ sender: Any) {
 
         let Id : Int? = (combobox_choose_server.indexOfSelectedItem + 1)
+        
         print(combobox_choose_customer.indexOfSelectedItem)
-        let server = sql.getseverbyId(Id: Id!)
-        
-        switch check_ptuid.state {
-        case NSOnState:
-            print("on ptuid")
-        case NSOffState:
-            print("off ptuid")
-        default:
-            print("mixed")
-        }
         
         
-        switch check_akey.state {
-        case NSOnState:
-            print("on akey")
-        case NSOffState :
-            print("off akey")
-        default:
-            print("default")
+        if(Ed_imei.stringValue.characters.count<10 || Ed_ptuid.stringValue.characters.count<8 || Ed_akey.stringValue.characters.count<6){
+            if(Ed_imei.stringValue.characters.count<10 ){
+                view.makeToast("imei nhap chua dung")
+            }
+            if(Ed_ptuid.stringValue.characters.count<8){
+                view.makeToast("ptuid phai la 8 ky tu")
+                print("ptuid phai la 8 ky tu")
+                
+            }
+            if(Ed_akey.stringValue.characters.count<6){
+                view.makeToast("akey phai la 6 ky tu")
+                
+                
+            }
             
-           
+        }else{
+            switch check_ptuid.state {
+            case NSOnState:
+                Ed_ptuid.stringValue = unit_auto.autoincrementptuid(str: Ed_ptuid.stringValue)
+            case NSOffState:
+                Ed_ptuid.stringValue = ""
+                print("off ptuid")
+            default:
+                print("mixed")
+            }
+            
+            switch check_akey.state {
+            case NSOnState:
+                Ed_akey.stringValue = unit_auto.autogenerateAkeyinttohex()
+                print("on akey")
+            case NSOffState :
+                Ed_akey.stringValue = ""
+                print("off akey")
+            default:
+                print("default")
+                
+                
+            }
+            
+            if(Id! > 0){
+                let csever = ConnecttoServer()
+                let server = sql.getseverbyId(Id: Id!)
+                var device = Device_Info()
+                
+                device.akey = Ed_akey.stringValue
+                device.ptuid = Ed_ptuid.stringValue
+                device.imei = Ed_imei.stringValue
+                device.mcc = Ed_MCC.stringValue
+                device.mnc = Ed_MNC.stringValue
+                device.cdma_tid = Ed_CDMA_TID.stringValue
+                device.uimid = Ed_UIMID.stringValue
+                device.esn = Ed_ESN.stringValue
+                device.meid = Ed_MEID.stringValue
+                device.area_code = Ed_AREA.stringValue
+                
+                device.iccid = ""
+                device.imsi = ""
+                
+                let reslogin = csever.httpconnecserver(sever : server, device_info : device)
+                
+                //csever.httpconnecserver(FACTORY_ID: server.user!, FACTORY_KEY: server.pass!, domain: server.domain!, port: server.port!)
+         
+                
+                
+                
+                
+                
+                
+            
+            }else{
+                view.makeToast("Ban chua chon server")
+            }
+            
+            
         }
         
-        
-       // httpconnecserver()
-        
-        
-        let reslogin = clogin.httpconnecserver(FACTORY_ID: server.user!, FACTORY_KEY: server.pass!, domain: server.domain!, port: server.port!)
-        
-        sid_sv = reslogin.sid
-        iv_sv = reslogin.iv
-        Key_sv = reslogin.Key
-        rnd_sv = reslogin.rnd
-        sn_sv = reslogin.sn
+
         
         
     }

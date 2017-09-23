@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0A7267BEC7EF5E4438B2AF942056DC27'
-               BlueprintName = 'SharkORM'
+               BlueprintIdentifier = '137354749D8CFC025F65B1AC24990D27'
+               BlueprintName = 'TSToast'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SharkORM.framework'>
+               BuildableName = 'TSToast.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

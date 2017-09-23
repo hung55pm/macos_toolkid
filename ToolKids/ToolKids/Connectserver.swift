@@ -12,22 +12,25 @@ import CryptoSwift
 class ConnecttoServer: Any {
     
     
-    func httpconnecserver(FACTORY_ID : String, FACTORY_KEY :String , domain : String , port :String) -> resultlogin{
+    func httpconnecserver(sever : SeverVinnet, device_info : Device_Info) -> resultlogin{
+        
+   
+        
         var result : resultlogin = resultlogin()
         let unit = Unit_tool()
         
         
-        let offset = unit.getoffset(FACTORY_KEY: FACTORY_KEY)
-        let key = unit.getkey(FACTORY_KEY: FACTORY_KEY,offset: offset)
+        let offset = unit.getoffset(FACTORY_KEY: sever.pass!)
+        let key = unit.getkey(FACTORY_KEY: sever.pass!,offset: offset)
         let req = unit.getreq()
         let srtoff : String? = String(offset)
-        let t = unit.getT(FACTORY_KEY: FACTORY_KEY, key: key,req: req , offset: offset)
-        let urls = "http://" + domain + ":" + port+"/fac_init"
+        let t = unit.getT(FACTORY_KEY: sever.pass!, key: key,req: req , offset: offset)
+        let urls = "http://" + sever.domain! + ":" + sever.port!+"/fac_init"
         
         var request = URLRequest(url : URL(string: urls)!)
         request.httpMethod = "POST"// phuong thuc truyen
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let bodyData = "&fid=" + FACTORY_ID + "&o=" + srtoff! + "&t=" + t
+        let bodyData = "&fid=" + sever.user! + "&o=" + srtoff! + "&t=" + t
         
         
         print("bodydata:  " + bodyData)
@@ -60,12 +63,17 @@ class ConnecttoServer: Any {
             result.Key = res["key"] as! String
             result.rnd = res["rnd"] as! String
             result.sid = res["sid"] as! String
-            result.sn = res["sn"] as! Int8
+            result.sn = res["sn"] as! Int64
                 
+            device_info.sn = result.sn! + 1
+            device_info.rnd = result.rnd
             
+             self.genQRcode(sever: sever, reslogin: result, device_info: device_info )
             
         }
         task.resume()
+        
+       
         
         return result
     }
@@ -84,9 +92,11 @@ class ConnecttoServer: Any {
 
         let req = unit.covertobjecttojson(device_info: device_info)
         
-        var estr = unit.Aes_encrypt_genqr(key: reslogin.Key!, req: req, iv: reslogin.iv!)
+        //var estr = unit.Aes_encrypt_genqr(key: reslogin.Key!, req: req, iv: reslogin.iv!)
         
-        let bodyData = "&fid" + sever.user! + "&sid" + reslogin.sid! + "e" + estr
+        let a: String? = "aaa"
+        
+        let bodyData = "&fid" + sever.user! + "&sid" + reslogin.sid! + "e" + a!
 
         
         

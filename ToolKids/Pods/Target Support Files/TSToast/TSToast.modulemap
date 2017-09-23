@@ -1,0 +1,6 @@
+framework module TSToast {
+  umbrella header "TSToast-umbrella.h"
+
+  export *
+  module * { export * }
+}
